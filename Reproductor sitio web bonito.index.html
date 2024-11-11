@@ -1,0 +1,858 @@
+<html><head><base href="https://radiotiempofinal.github.io/Broadcast/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tiempo Final Medios</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+<style>
+    :root {
+        --primary-color: #FF0000;
+        --secondary-color: #000000;
+        --accent-color: #FFFFFF;
+        --text-color: #333333;
+        --background-color: #F5F5F5;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .hero {
+        background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        color: var(--accent-color);
+        padding: 80px 0;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto 30px;
+    }
+
+    .cta-button {
+        display: inline-block;
+        background-color: var(--accent-color);
+        color: var(--primary-color);
+        padding: 12px 24px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .cta-button:hover {
+        background-color: var(--secondary-color);
+        color: var(--accent-color);
+        transform: translateY(-3px);
+    }
+
+    .features {
+        padding: 60px 0;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+    }
+
+    .feature-card {
+        background-color: var(--accent-color);
+        border-radius: 10px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .feature-card i {
+        font-size: 3rem;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .news-section {
+        padding: 60px 0;
+        background-color: var(--accent-color);
+    }
+
+    .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+    }
+
+    .news-card {
+        background-color: var(--background-color);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .news-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .news-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .news-card-content {
+        padding: 20px;
+    }
+
+    .news-category {
+        display: inline-block;
+        background-color: var(--primary-color);
+        color: var(--accent-color);
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+
+    .news-card-content .news-category {
+        margin-bottom: 5px;
+    }
+
+    .news-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .news-card p {
+        font-size: 0.9rem;
+        color: #666;
+    }
+
+    .news-modal {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.8);
+    }
+
+    .news-modal-content {
+        background-color: var(--accent-color);
+        margin: 5% auto;
+        padding: 20px;
+        border-radius: 10px;
+        width: 80%;
+        max-width: 800px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        position: relative;
+    }
+
+    .close-modal {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .close-modal:hover,
+    .close-modal:focus {
+        color: var(--primary-color);
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .social-share {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .share-btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+    }
+
+    .share-btn:hover {
+        opacity: 0.8;
+    }
+
+    .share-btn.facebook {
+        background-color: #3b5998;
+    }
+
+    .share-btn.instagram {
+        background-color: #c13584;
+    }
+
+    .share-btn.whatsapp {
+        background-color: #25d366;
+    }
+
+    footer {
+        background-color: var(--secondary-color);
+        color: var(--accent-color);
+        padding: 40px 0;
+        text-align: center;
+    }
+
+    .social-icons {
+        margin-top: 20px;
+    }
+
+    .social-icons a {
+        color: var(--accent-color);
+        font-size: 1.5rem;
+        margin: 0 10px;
+        transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        color: var(--primary-color);
+    }
+
+    /* Estilos para el reproductor de radio */
+    #player {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: var(--primary-color);
+        color: var(--accent-color);
+        padding: 10px 20px;
+        border-radius: 30px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        display: flex;
+        align-items: center;
+        z-index: 1000;
+        width: 250px;
+    }
+
+    #player button {
+        background: none;
+        border: none;
+        color: var(--accent-color);
+        font-size: 1.5rem;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+    .marquee-container {
+        width: 180px;
+        overflow: hidden;
+    }
+
+    .marquee-content {
+        display: inline-block;
+        white-space: nowrap;
+        animation: marquee 15s linear infinite;
+    }
+
+    @keyframes marquee {
+        0% {
+            transform: translateX(100%);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+
+    /* Estilos para el widget del clima */
+    .weather-widget {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 10px 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        display: flex;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .weather-icon {
+        font-size: 2rem;
+        margin-right: 10px;
+        color: var(--primary-color);
+    }
+
+    .weather-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .temperature {
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    .description {
+        font-size: 0.9rem;
+        color: #666;
+    }
+
+    /* Estilos para el slider de noticias destacadas */
+    .featured-news-slider {
+        margin-bottom: 40px;
+    }
+
+    .featured-news-slide {
+        position: relative;
+        height: 400px;
+        overflow: hidden;
+        border-radius: 10px;
+    }
+
+    .featured-news-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .featured-news-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 20px;
+        background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
+        color: var(--accent-color);
+    }
+
+    .featured-news-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .featured-news-content p {
+        font-size: 1rem;
+    }
+
+    .featured-news-content .news-category {
+        margin-bottom: 5px;
+    }
+
+    /* Styles for slider controls */
+    .slick-prev, .slick-next {
+        font-size: 0;
+        line-height: 0;
+        position: absolute;
+        top: 50%;
+        display: block;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        transform: translate(0, -50%);
+        cursor: pointer;
+        color: transparent;
+        border: none;
+        outline: none;
+        background: rgba(0,0,0,0.5);
+        border-radius: 50%;
+        z-index: 1;
+    }
+
+    .slick-prev:hover, .slick-next:hover {
+        background: rgba(0,0,0,0.8);
+    }
+
+    .slick-prev {
+        left: 10px;
+    }
+
+    .slick-next {
+        right: 10px;
+    }
+
+    .slick-prev:before, .slick-next:before {
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        font-size: 20px;
+        line-height: 1;
+        opacity: 1;
+        color: white;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .slick-prev:before {
+        content: '\f104';
+    }
+
+    .slick-next:before {
+        content: '\f105';
+    }
+
+    /* Media queries para responsividad */
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+
+        .hero p {
+            font-size: 1rem;
+        }
+
+        .features-grid, .news-grid {
+            grid-template-columns: 1fr;
+        }
+
+        #player {
+            bottom: 10px;
+            right: 10px;
+            left: 10px;
+            width: auto;
+            justify-content: flex-start;
+        }
+
+        .marquee-container {
+            width: calc(100% - 50px);
+        }
+
+        .featured-news-slide {
+            height: 300px;
+        }
+
+        .news-modal-content {
+            width: 95%;
+            margin: 10% auto;
+        }
+    }
+</style>
+</head>
+<body>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Bienvenido a TIEMPO FINAL MEDIOS </h1>
+                <p>Transmitiendo Palabras de Vida a tu Corazón.</p>
+                <a href="#escuchar" class="cta-button">EN VIVO SITIO WEB OFICIAL</a>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-music"></i>
+                        <h3>Programa Musical</h3>
+                        <p>Alabanza, Adoración, Ranchera, del Recuerdo, Tropical y Urbano.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-newspaper"></i>
+                        <h3>Noticias Mundo Cristiano</h3>
+                        <p>Mantente informado con las últimas noticias locales y globales.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Comunidad Activa</h3>
+                        <p>Participa en nuestros eventos y concursos exclusivos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="news-section">
+            <div class="container">
+                <h2>Noticias Destacadas</h2>
+                <div class="featured-news-slider">
+                    <!-- Las noticias destacadas se cargarán aquí dinámicamente -->
+                </div>
+                <div class="news-grid">
+                    <!-- Las noticias se cargarán aquí dinámicamente -->
+                </div>
+                <div class="load-more-container">
+                    <button id="load-more-btn" class="cta-button">Cargar Más Noticias</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 TIEMPO FINAL MEDIOS Todos los derechos reservados.</p>
+            <div class="social-icons">
+                <a href="https://web.facebook.com/RadioTiempoFinal" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://twitter.com/Dj_Wilmer_Peru" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/radio_tiempo_final/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="player">
+        <button id="play-pause"><i class="fas fa-play"></i></button>
+        <div class="marquee-container">
+            <div class="marquee-content">
+                Escuchas: Radio Tiempo Final
+            </div>
+        </div>
+    </div>
+
+    <div class="weather-widget">
+        <div class="weather-icon">
+            <i class="fas fa-sun"></i>
+        </div>
+        <div class="weather-info">
+            <span class="temperature">--°C</span>
+            <span class="description">Cargando...</span>
+        </div>
+    </div>
+
+    <div id="news-modal" class="news-modal">
+        <div class="news-modal-content">
+            <span class="close-modal">&times;</span>
+            <span class="news-category"></span>
+            <h2 id="modal-title"></h2>
+            <div id="modal-content"></div>
+            <div class="social-share">
+                <button class="share-btn facebook"><i class="fab fa-facebook-f"></i> Compartir</button>
+                <button class="share-btn instagram"><i class="fab fa-instagram"></i> Compartir</button>
+                <button class="share-btn whatsapp"><i class="fab fa-whatsapp"></i> Compartir</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+    const articleCache = new Map();
+
+    let audioPlayer;
+    let isPlaying = false;
+
+    function setupPlayer() {
+        audioPlayer = new Audio('https://sp.aljania.com:8108/stream');
+        const playPauseButton = document.getElementById('play-pause');
+
+        isPlaying = false;
+        playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
+
+        playPauseButton.addEventListener('click', function() {
+            if (isPlaying) {
+                audioPlayer.pause();
+                playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
+            } else {
+                audioPlayer.play().catch(error => {
+                    console.error('Error playing audio:', error);
+                });
+                playPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+            isPlaying = !isPlaying;
+        });
+    }
+
+    let currentPage = 1;
+    const newsPerPage = 6;
+
+    function setupLoadMoreButton() {
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        loadMoreBtn.addEventListener('click', () => {
+            currentPage++;
+            getNews();
+        });
+    }
+
+    async function fetchRSSFeed() {
+        const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fspanish.christianpost.com%2Ffeed.xml%3Fcategory%3Dmundo');
+        const data = await response.json();
+        return data.items.map(item => ({
+            title: item.title,
+            content: item.description,
+            image: item.enclosure.link || 'https://via.placeholder.com/300x200',
+            link: item.link,
+            category: item.categories.length > 0 ? item.categories[0] : 'General'
+        }));
+    }
+
+    async function getNews() {
+        try {
+            const newsData = await fetchRSSFeed();
+            const newsGrid = document.querySelector('.news-grid');
+            const featuredNewsSlider = document.querySelector('.featured-news-slider');
+
+            if (!newsGrid || !featuredNewsSlider) {
+                console.error('News grid or featured news slider not found');
+                return;
+            }
+
+            if (currentPage === 1) {
+                newsGrid.innerHTML = '';
+                featuredNewsSlider.innerHTML = '';
+
+                newsData.slice(0, 4).forEach((news, index) => {
+                    const slide = `
+                        <div class="featured-news-slide" data-index="${index}">
+                            <img src="${news.image}" alt="${news.title}">
+                            <div class="featured-news-content">
+                                <span class="news-category">${news.category}</span>
+                                <h3>${news.title}</h3>
+                                <p>${news.content.substring(0, 100)}...</p>
+                            </div>
+                        </div>
+                    `;
+                    featuredNewsSlider.innerHTML += slide;
+                });
+
+                if (typeof $ !== 'undefined' && $.fn.slick) {
+                    $('.featured-news-slider').slick({
+                        dots: true,
+                        infinite: true,
+                        speed: 500,
+                        slidesToShow: 1,
+                        adaptiveHeight: true,
+                        autoplay: true,
+                        autoplaySpeed: 5000,
+                        prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+                        nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
+                    });
+
+                    $('.featured-news-slide').on('click', function() {
+                        const index = $(this).data('index');
+                        const newsItem = newsData[index];
+                        if (newsItem) {
+                            openNewsModal(newsItem);
+                        }
+                    });
+                } else {
+                    console.error('Slick carousel not found or not initialized');
+                }
+            }
+
+            const startIndex = (currentPage - 1) * newsPerPage;
+            const endIndex = startIndex + newsPerPage;
+
+            newsData.slice(startIndex, endIndex).forEach((news, index) => {
+                const newsCard = `
+                    <div class="news-card" data-index="${startIndex + index}">
+                        <img src="${news.image}" alt="${news.title}">
+                        <div class="news-card-content">
+                            <span class="news-category">${news.category}</span>
+                            <h3>${news.title}</h3>
+                            <p>${news.content.substring(0, 100)}...</p>
+                        </div>
+                    </div>
+                `;
+                newsGrid.innerHTML += newsCard;
+            });
+
+            const newsCards = document.querySelectorAll('.news-card');
+            newsCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const index = parseInt(card.getAttribute('data-index'));
+                    const newsItem = newsData[index];
+                    if (newsItem) {
+                        openNewsModal(newsItem);
+                    } else {
+                        console.error('News item not found');
+                    }
+                });
+            });
+
+            const loadMoreBtn = document.getElementById('load-more-btn');
+            if (endIndex >= newsData.length) {
+                loadMoreBtn.style.display = 'none';
+            } else {
+                loadMoreBtn.style.display = 'block';
+            }
+        } catch (error) {
+            console.error('Error fetching news:', error);
+        }
+    }
+
+    async function openNewsModal(news) {
+        if (!news) {
+            console.error('Invalid news data');
+            return;
+        }
+
+        const modal = document.getElementById('news-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalContent = document.getElementById('modal-content');
+        const modalCategory = document.querySelector('.news-category');
+
+        if (!modal || !modalTitle || !modalContent || !modalCategory) {
+            console.error('Modal elements not found');
+            return;
+        }
+
+        modalCategory.textContent = news.category;
+        modalTitle.textContent = news.title || 'No title available';
+        modalContent.innerHTML = '<p>Cargando contenido completo...</p>';
+
+        modal.style.display = 'block';
+
+        try {
+            let fullContent;
+            if (articleCache.has(news.link)) {
+                fullContent = articleCache.get(news.link);
+            } else {
+                const proxyUrl = 'https://api.allorigins.win/raw?url=';
+                const response = await fetch(proxyUrl + encodeURIComponent(news.link));
+                const data = await response.text();
+
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(data, 'text/html');
+                
+                const articleContent = doc.querySelector('.body-nota, article, .news-content, .article-body');
+                
+                if (articleContent) {
+                    fullContent = articleContent.innerHTML;
+                    articleCache.set(news.link, fullContent);
+                } else {
+                    fullContent = '<p>No se pudo cargar el contenido completo. Por favor, visite el sitio web de Clarín para leer la noticia completa.</p>';
+                }
+            }
+
+            modalContent.innerHTML = `
+                <img src="${news.image}" alt="${news.title}" style="max-width: 100%; margin-bottom: 15px;">
+                ${fullContent}
+                <a href="${news.link}" target="_blank" style="display: block; margin-top: 15px;">Leer más en Clarín</a>
+            `;
+
+            const shareUrl = window.location.origin + window.location.pathname + '?news=' + encodeURIComponent(news.link);
+            const shareText = encodeURIComponent(news.title);
+
+            const facebookBtn = document.querySelector('.share-btn.facebook');
+            const instagramBtn = document.querySelector('.share-btn.instagram');
+            const whatsappBtn = document.querySelector('.share-btn.whatsapp');
+
+            if (facebookBtn) facebookBtn.onclick = () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`, '_blank');
+            if (instagramBtn) instagramBtn.onclick = () => alert('Instagram no permite compartir directamente. Copie el enlace y compártalo manualmente.');
+            if (whatsappBtn) whatsappBtn.onclick = () => window.open(`https://wa.me/?text=${shareText}%20${shareUrl}`, '_blank');
+
+        } catch (error) {
+            console.error('Error fetching full article:', error);
+            modalContent.innerHTML = `
+                <p>Error al cargar el contenido completo. Por favor, intente nuevamente más tarde.</p>
+                <a href="${news.link}" target="_blank">Leer en Clarín</a>
+            `;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        setupPlayer();
+        getNews().catch(error => console.error('Error initializing news:', error));
+        updateWeatherEvery20Minutes();
+        setupLoadMoreButton(); 
+
+        const closeModal = document.querySelector('.close-modal');
+        if (closeModal) {
+            closeModal.onclick = function() {
+                const modal = document.getElementById('news-modal');
+                if (modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('news-modal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    });
+
+    function updateWeatherEvery20Minutes() {
+        updateWeather(); // Initial update
+        setInterval(updateWeather, 20 * 60 * 1000); // Update every 20 minutes
+    }
+
+    function updateWeather() {
+        const apiKey = '107ce488ed92a468aaf552958dc98a4b';
+        const city = 'Aguas Zarcas,CR'; // Assuming Aguas Zarcas in Costa Rica
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=es`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                updateWeatherUI(data);
+            })
+            .catch(error => {
+                console.error('Error al obtener el clima:', error);
+            });
+    }
+
+    function updateWeatherUI(weatherData) {
+        if (weatherData) {
+            const temperature = Math.round(weatherData.main.temp);
+            const description = weatherData.weather[0].description;
+            const icon = weatherData.weather[0].icon;
+
+            document.querySelector('.temperature').textContent = `${temperature}°C`;
+            document.querySelector('.description').textContent = description.charAt(0).toUpperCase() + description.slice(1);
+
+            const iconMap = {
+                '01d': 'fa-sun',
+                '01n': 'fa-moon',
+                '02d': 'fa-cloud-sun',
+                '02n': 'fa-cloud-moon',
+                '03d': 'fa-cloud',
+                '03n': 'fa-cloud',
+                '04d': 'fa-cloud',
+                '04n': 'fa-cloud',
+                '09d': 'fa-cloud-showers-heavy',
+                '09n': 'fa-cloud-showers-heavy',
+                '10d': 'fa-cloud-sun-rain',
+                '10n': 'fa-cloud-moon-rain',
+                '11d': 'fa-bolt',
+                '11n': 'fa-bolt',
+                '13d': 'fa-snowflake',
+                '13n': 'fa-snowflake',
+                '50d': 'fa-smog',
+                '50n': 'fa-smog'
+            };
+
+            const faIcon = iconMap[icon] || 'fa-sun'; // Default to sun if icon not found
+            document.querySelector('.weather-icon i').className = `fas ${faIcon}`;
+        }
+    }
+
+    // Initial weather update
+    updateWeather();
+    </script>
+</body>
+</html>
